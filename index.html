@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja Cat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Jersey 10", sans-serif;
+            margin: 0;
+            padding: 0;
+            color: rgba(245, 255, 0, 0.71);
+        }
+        #video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgb(0, 0, 0);
+            z-index: 1000;
+        }
+        header img {
+            max-width: 150px;
+            margin-left: 350px;
+        }
+        .header-links {
+            display: flex;
+            align-items: center;
+            margin-right: 350px;
+            font-size: 35px;
+        }
+        .header-links a {
+            color: rgba(245, 255, 0, 0.71);
+            text-decoration: none;
+            margin: 0 25px;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+        }
+        #vertical-line {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 174%;
+            background-color: rgba(121, 121, 121, 0.69);
+            z-index: 999;
+            transform: translateX(-50%);
+        }
+        #main-content {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            margin-top: 300px;
+        }
+        #main-image-container {
+            position: relative;
+            max-width: 500px;
+        }
+        #main-image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 80%;
+            height: 80%;
+            background-color: rgba(255, 255, 255, 0.05);
+            z-index: -1;
+            transform: rotate(15deg);
+            margin: 50px 0 0 50px;
+        }
+        #main-image {
+            width: 100%;
+        }
+        #main-text-container {
+            margin-left: 200px;
+            font-size: 35px;
+            max-width: 500px;
+            position: relative;
+            padding: 20px;
+        }
+        #main-text-container h1 {
+            font-size: 70px;
+            margin: 100px 0;
+        }
+        #main-text-container::before {
+            content: '';
+            position: absolute;
+            top: 100px;
+            left: 0;
+            width: 100%;
+            height: 80%;
+            border: 1px solid rgba(0, 0, 0, 0.26);
+            box-sizing: border-box;
+            pointer-events: none;
+        }
+        #main-content-inverted {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            margin-top: 200px;
+        }
+        #main-text-container-inverted {
+            margin-right: 200px;
+            font-size: 35px;
+            max-width: 500px;
+            position: relative;
+            padding: 20px;
+        }
+        #main-text-container-inverted::before {
+            content: '';
+            position: absolute;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            height: 80%;
+            border: 1px solid rgba(0, 0, 0, 0.26);
+            box-sizing: border-box;
+            pointer-events: none;
+        }
+        #main-image-container-inverted {
+            position: relative;
+            max-width: 500px;
+        }
+        #main-image-container-inverted::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 80%;
+            height: 80%;
+            background-color: rgba(255, 255, 255, 0.05);
+            z-index: -1;
+            transform: rotate(15deg);
+            margin: 50px 0 0 50px;
+        }
+        #main-image-inverted {
+            width: 100%;
+        }
+        #tokenomics {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin: 96px 0;
+        }
+        #tokenomics h1 {
+            color: rgba(0, 255, 69, 0.58);
+            font-size: 70px;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        #tokenomics-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            max-width: 1350px;
+            position: relative;
+        }
+        #tokenomics-content::before {
+            content: '';
+            position: absolute;
+            top: 47px;
+            left: 45px;
+            width: 34%;
+            height: 71%;
+            background-color: rgba(255, 255, 255, 0.05);
+            z-index: -1;
+            transform: rotate(15deg);
+            margin: 50px 0 0 70px;
+        }
+        #tokenomics-content img {
+            max-width: 700px;
+            margin-right: 27px;
+        }
+        #tokenomics-content p {
+            margin: auto;
+        }
+        #tokenomics-content p2 {
+            font-size: 78px;
+            position: absolute;
+            margin-left: 730px;
+            margin-top: 300px;
+            color: rgba(0, 255, 69, 0.58);
+        }
+        #roadmap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin: 50px 330px;
+        }
+        #roadmap::before {
+            content: '';
+            position: absolute;
+            top: 2510px;
+            left: auto;
+            width: 70%;
+            height: 80%;
+            background-color: rgba(255, 255, 255, 0.05);
+            z-index: -1;
+        }
+        #roadmap img {
+            margin-top: 100px;
+            max-width: 95%;
+        }
+        #socials {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        #socials h1 {
+            color: rgba(0, 255, 69, 0.58);
+            font-size: 100px;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        #socials img {
+            max-width: 70%;
+        }
+        footer {
+            background: rgb(0, 0, 0);
+            color: rgba(0, 255, 69, 0.58);
+            text-align: center;
+            padding: 15px 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop id="video-background">
+        <source src="11939278_1920_1080_60fps.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <header>
+        <img src="8820C498-3064-4F23-AEDA-4EDC9206C8C0.png" alt="Ninja Cat Logo">
+        <div class="header-links">
+            <a href="#chart">Chart</a>
+            <a href="#main-content-inverted">About</a>
+            <a href="#tokenomics">Tokenomics</a>
+            <a href="#roadmap">Roadmap</a>
+            <a href="#socials">Socials</a>
+        </div>
+    </header>
+    <div id="vertical-line"></div>
+    <div id="main-content">
+        <div id="main-image-container">
+            <img id="main-image" src="Ninja_Cat_Final(1).png" alt="Ninja Cat Image">
+        </div>
+        <div id="main-text-container">
+            <h1>JOIN NINJA CAT!</h1>
+            <p>Join Ninja Cat, The Best Memecoin Community Of Solana, And Support The Dangerous Cat Of The Entire World!</p>
+        </div>
+    </div>
+    <div id="main-content-inverted">
+        <div id="main-text-container-inverted">
+            <h1>ABOUT</h1>
+            <p>Join Ninja Cat, The Best Memecoin Community Of Solana, And Support The Dangerous Cat Of The Entire World! We Are The Meme Community. The Meme Community That Everyone Dreams Of And We Aim High, We Will Become The Most Capitalized Memecoin In The World!</p>
+        </div>
+        <div id="main-image-container-inverted">
+            <img id="main-image-inverted" src="Ninja_Cat_Final(12).png" alt="Ninja Cat Image">
+        </div>
+    </div>
+    <div id="tokenomics">
+        <h1>TOKENOMICS</h1>
+        <div id="tokenomics-content">
+            <img src="Progetto senza titolo.gif" alt="Gif">
+            <p>No Taxes, No Bullshit. It’s That Simple. LP Tokens Are Burnt, And Contract Ownership Is Renounced.</p>
+            <p2> TOKEN ADDRESS: Coming Soon...</p2>
+        </div>
+    </div>
+    <div id="roadmap">
+        <img src="Roadmap.png" alt="Roadmap">
+    </div>
+    <div id="socials">
+        <h1>SOCIALS</h1>
+        <img src="socials.png" alt="Socials">
+    </div>
+    <footer>
+        NinjaCat © 2024 by CEO. All rights reserved!
+    </footer>
+</body>
+</html>
